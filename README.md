@@ -2,6 +2,9 @@
 
 Single-page party system and manifesto for classless object composition !
 
+## [example](https://pozorfluo.github.io/komrad/)
+
+
 ## `SИAIC`
 
 ![alt text][nvrstap]
