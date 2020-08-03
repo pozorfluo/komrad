@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,800;0,900;1,700&display=swap');
+:root {
+    --color-bg: #5c06d6;
+    --color-fg: #1ed760;
+    --color-fg-muted: #1ed75f7f;
+    --color-black: #333333;
+    --row-count: 3;
+    --col-count: 3;
+    --square-container: 65vmin;
+    --square-h: min(
+        calc(var(--square-container) / var(--row-count)),
+        calc(var(--square-container) / var(--col-count))
+    );
+    --square-radius: calc(var(--square-h) / 64);
+    --square-hover-radius: calc(var(--square-h) / 64);
+    --text: 5vmin;
+    --board-width: calc(var(--square-container) + var(--text) * 2);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 2rem;
+    background-color: var(--color-bg);
+}
+
+.timer-x,
+.timer-o {
+    width: var(--board-width);
+    height: calc(var(--text) * 1.5);
+    opacity: 0.5;
+    margin: 0 auto;
+    color: var(--color-fg);
+    text-align: center;
+    font-size: var(--text);
+    line-height: calc(var(--text) * 1.5);
+}
+
+.timer-x::before {
+    content: 'X  ';
+}
+.timer-o::before {
+    content: 'O  ';
+}
+.timer-x.active,
+.timer-o.active
+ {
+    opacity: 1;
+    background-color: var(--color-fg-muted);
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: var(--text);
+    grid-row-gap: var(--text);
+    perspective: 1000px;
+    overflow: hidden;
+    z-index: 3;
+    width: var(--board-width);
+    margin: 2rem auto;
+    /* padding : calc(var(--square-radius) / 2); */
+    /* border-radius: var(--square-radius); */
+    /* border: 20px solid  var(--color-fg-muted); */
+    background-color: var(--color-fg);
+    text-align: center;
+    /* font-family: 'Poppins', sans-serif; */
+    font-size: var(--square-h);
+    font-weight: 900;
+    line-height: var(--square-h);
+}
+
+.square {
+    width: var(--square-h);
+    height: var(--square-h);
+    background-color: var(--color-bg);
+    color: var(--color-fg);
+    /* border-radius: var(--square-radius); */
+    /* border: 0 solid var(--color-fg); */
+    /* margin: calc(var(--square-radius) * 2); */
+    opacity: 1;
+    z-index: -3;
+    transition: all 0.2s ease-in;
+    transform-style: preserve-3d;
+    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    transform: scale3d(1.02, 1.02, 1);
+    /* transform: scale3d(1.005, 1.005, 1); */
+    /* box-shadow: 0px 0px 0px rgba(0, 0, 0, 0); */
+    /* box-shadow: inset 4px 4px 0px 0px var(--color-fg-muted), 
+    inset 4px 3px 11px 0px var(--color-fg); */
+    transition: 0.5s;
+    transition-timing-function: cubic-bezier(0.74, -0.73, 0.2, 1.67);
+}
+
+.square:hover,
+button:hover {
+    /* border-radius: var(--square-hover-radius); */
+    z-index: 3;
+    opacity: 1;
+    background-color: var(--color-fg);
+    color: var(--color-bg);
+    /* border-color: var(--color-fg-muted); */
+    /* box-shadow: 2px 1px 0px 0px var(--color-fg-muted), 
+    4px 3px 11px 0px var(--color-fg); */
+    /* box-shadow: 4px 3px 11px 0px var(--color-fg); */
+    transform: scale3d(1.02, 1.02, 1);
+    transition: 0.1s;
+    transition-timing-function: cubic-bezier(0.74, -0.73, 0.2, 1.67);
+}
+
+button {
+    /* line-height: 1.42; */
+    padding: 0.5em 1.4em;
+    border-width: calc(var(--text) / 4);
+    border-style: solid;
+    background: transparent;
+    border-radius: 0;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: var(--text);
+    user-select: none;
+    transform: translate(0.5em -0.4em);
+    transition: 0.5s;
+    transition-timing-function: cubic-bezier(0.74, -0.73, 0.2, 1.67);
+    color: var(--color-fg);
+    border-color: var(--color-fg);
+}
+
+button:active {
+    transform: translate(0, 0);
+    transition-duration: 0.1s;
+}
+
+.container{
+    /* text-align: center; */
+    width: var(--board-width);
+    margin: 0 auto;
+}
+
+
+
+
+.col-1 {
+    width: 8.33%;
+}
+.col-2 {
+    width: 16.66%;
+}
+.col-3 {
+    width: 25%;
+}
+.col-4 {
+    width: 33.33%;
+}
+.col-5 {
+    width: 41.66%;
+}
+.col-6 {
+    width: 50%;
+}
+.col-7 {
+    width: 58.33%;
+}
+.col-8 {
+    width: 66.66%;
+}
+.col-9 {
+    width: 75%;
+}
+.col-10 {
+    width: 83.33%;
+}
+.col-11 {
+    width: 91.66%;
+}
+.col-12 {
+    width: 100%;
+}
+
+[class*='col-'] {
+    float: left;
+    border: 0;
+}
